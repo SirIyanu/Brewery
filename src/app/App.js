@@ -1,11 +1,11 @@
-import { Routes, Route, RouterProvider } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Home } from "./pages/Home";
 import { Edit } from "./pages/Edit";
 import { BeerDetails } from "./components/BeerDetails";
 
 export const App = () => {
-  const objects = Array.from({ length: 50 }, (_, i) => `Object ${i + 1}`);
+  const beer = Array.from({ length: 50 }, (_, i) => `beer ${i + 1}`);
 
   return (
     <div className="App">

@@ -7,7 +7,7 @@ export const BreweryList = ({ breweries, title }) => {
       {breweries &&
         breweries.map((brewery) => (
           <div className={style["brewery-preview"]} key={brewery.id}>
-            <Link to={`/breweries/${brewery.id}`}>
+            <Link className={style.link} to={`/breweries/${brewery.id}`}>
               <h2>{brewery.name}</h2>
               <p>Popular drink in {brewery.city}</p>
             </Link>

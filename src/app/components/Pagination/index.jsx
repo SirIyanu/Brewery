@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BreweryList } from "../BreweryList";
 import { useFetch } from "../../customhook/useFetch";
+import style from "./style.module.css";
 
 export const Pagination = () => {
   const [breweries, setBreweries] = useState([]);
@@ -58,7 +59,7 @@ export const Pagination = () => {
   const isNextDisabled = startIndex + limit >= beer.length;
   // ${brewery.id}
   return (
-    <div className="container">
+    <div className={style.container}>
       <h1>Beers</h1>
       {/* Display fetched beers */}
       {error && <div>{error}</div>}
@@ -72,17 +73,19 @@ export const Pagination = () => {
       )}
 
       {/* Pagination */}
-      <div>
+      <div className={style.pagination}>
         <button disabled={isPrevDisabled} onClick={handlePrev}>
           Previous
         </button>
-        <span> Page {startIndex} </span>
+
+        <div> {startIndex} </div>
+
         <button disabled={isNextDisabled} onClick={handleNext}>
           Next
         </button>
       </div>
       {/* Beers per page selector */}
-      <div>
+      <div className={style.selector}>
         <label htmlFor="breweriesPerPage">Beers per page:</label>
         <select
           id="breweriesPerPage"

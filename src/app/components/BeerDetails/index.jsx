@@ -9,29 +9,46 @@ export const BeerDetails = () => {
   );
   const navigate = useNavigate();
 
-  // const handleDelete = () => {
-  //   fetch("https://api.openbrewerydb.org/v1/breweries/" + id, {
-  //     method: "DELETE",
-  //   }).then(() => {
-  //     navigate("/");
-  //   });
-  // };
+  const handleDelete = async () => {
+    console.log(id);
+    try {
+      const response = await fetch(
+        "https://api.openbrewerydb.org/v1/breweries/" + id,
+        {
+          method: "DELETE",
+        }
+      );
+      const result = await response.json();
+      console.log(result, "a result received");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-  // const handleEdit = () => {
-  //   fetch("https://api.openbrewerydb.org/v1/breweries/" + beer.id, {
-  //     method: "PATCH",
-  //   }).then(() => {
-  //     navigate("/edit");
-  //   });
-  // };
+  const handleEdit = async () => {
+    try {
+      const response = await fetch(
+        "https://api.openbrewerydb.org/v1/breweries/" + beer.id,
+        {
+          method: "PATCH",
+        }
+      );
+      const feedback = await response.json();
+      console.log(feedback, "I got a feedback");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className={style["brewery - details"]}>
-      {/* <button onClick={handleEdit}>edit</button> */}
       {isLoading && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {beer && (
         <article>
+          <button className={style.button} onClick={handleEdit}>
+            edit
+          </button>
           <h2>Name: {beer.name}</h2>
           <p>
             Location: {beer.city}, {beer.country}
@@ -40,7 +57,9 @@ export const BeerDetails = () => {
           <p>Phone: {beer.phone}</p>
           <p></p>
 
-          {/* <button onClick={handleDelete}>delete</button> */}
+          <button className={style.button} onClick={handleDelete}>
+            delete
+          </button>
         </article>
       )}
     </div>
